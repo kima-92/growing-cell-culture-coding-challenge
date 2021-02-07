@@ -13,6 +13,7 @@
 		FA4CEE8125D080AF0018B885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE8025D080AF0018B885 /* Assets.xcassets */; };
 		FA4CEE8425D080AF0018B885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE8225D080AF0018B885 /* LaunchScreen.storyboard */; };
 		FA4CEE8F25D0813D0018B885 /* DataTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEE8E25D0813D0018B885 /* DataTestingViewController.swift */; };
+		FA4CEE9425D082490018B885 /* cell-cultures.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE9325D082490018B885 /* cell-cultures.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FA4CEE8325D080AF0018B885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA4CEE8525D080AF0018B885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA4CEE8E25D0813D0018B885 /* DataTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTestingViewController.swift; sourceTree = "<group>"; };
+		FA4CEE9325D082490018B885 /* cell-cultures.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "cell-cultures.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				FA4CEE7925D080AD0018B885 /* SceneDelegate.swift */,
 				FA4CEE8025D080AF0018B885 /* Assets.xcassets */,
 				FA4CEE8525D080AF0018B885 /* Info.plist */,
+				FA4CEE9325D082490018B885 /* cell-cultures.txt */,
 			);
 			path = "Growing Cells in a Medium";
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				FA4CEE8425D080AF0018B885 /* LaunchScreen.storyboard in Resources */,
 				FA4CEE8125D080AF0018B885 /* Assets.xcassets in Resources */,
 				FA4CEE7F25D080AD0018B885 /* Main.storyboard in Resources */,
+				FA4CEE9425D082490018B885 /* cell-cultures.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
