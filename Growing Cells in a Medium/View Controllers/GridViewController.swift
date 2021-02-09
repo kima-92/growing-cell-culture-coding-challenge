@@ -14,6 +14,9 @@ class GridViewController: UIViewController {
     var rows: [String]?
     var cellSize: CGFloat?
     
+    var isGridStable: Bool = false
+    var timerCount = 0
+    
     // MARK: - Outlates
     
     @IBOutlet weak var gridView: GridView!
@@ -24,9 +27,34 @@ class GridViewController: UIViewController {
         super.viewDidLoad()
         fetchData()
         setUpGrid()
+        fireTimer()
     }
     
     // MARK: - Methods
+    
+    // Timer
+    private func fireTimer() {
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+            
+            if timerCount == 5 {
+                timer.invalidate()
+                gridView.isRed = true
+                gridView.setNeedsDisplay()
+            } else {
+                timerCount += 1
+                print("Count: \(timerCount)")
+            }
+            
+//            // If the Grid is stable, stop refreshing the Grid
+//            if isGridStable {
+//                timer.invalidate()
+//            } else {
+//                gridView.setNeedsDisplay()
+//            }
+            // TODO: - ^^ Add real logic after isGridStable is functional
+        }
+    }
     
     // Extracting grid data
     private func fetchData() {
@@ -42,7 +70,7 @@ class GridViewController: UIViewController {
     }
     
     // Set up the Grid View
-    private func setUpGrid() {
+    private func setUpGrid(isRed: Bool = false) {
         guard let rows = rows else { return }
         
         // Size of the Screen
@@ -61,6 +89,6 @@ class GridViewController: UIViewController {
         }
         
         guard let cellSize = cellSize else { return }
-        gridView.setGridSize(elements: rows, cellSize: cellSize)
+        gridView.setGridSize(elements: rows, cellSize: cellSize, isRed: isRed)
     }
 }

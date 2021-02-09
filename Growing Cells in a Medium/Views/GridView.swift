@@ -16,6 +16,8 @@ class GridView: UIView {
     var rowsCount: Int?
     var cellSize: CGFloat?
     
+    var isRed: Bool = false
+    
     // MARK: - Methods
     
     override func draw(_ rect: CGRect) {
@@ -36,7 +38,13 @@ class GridView: UIView {
                     let square = CGRect(x: x, y: y, width: cellSize, height: cellSize)
                     
                     // Color square based on state
-                    if character == "L" {
+                    
+                    
+                    if isRed {
+                        context.setFillColor(UIColor.red.cgColor)
+                        context.fill(square)
+                    }
+                    else if character == "L" {
                         context.setFillColor(UIColor.green.cgColor)
                         context.fill(square)
                     } else if character == "." {
@@ -56,11 +64,14 @@ class GridView: UIView {
     // MARK: - Methods
     
     // Collect the data to size the grid
-    func setGridSize(elements: [String], cellSize: CGFloat) {
+    func setGridSize(elements: [String], cellSize: CGFloat, isRed: Bool = false) {
         self.elements = elements
         self.rowsCount = elements.count
         self.columnsCount = elements[0].count
         self.cellSize = cellSize
+        
+        
+        self.isRed = isRed
         
         // TODO: - Don't assume each row has the same count
     }
