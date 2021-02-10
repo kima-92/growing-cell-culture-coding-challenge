@@ -15,6 +15,12 @@
 		FA4CEE8125D080AF0018B885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE8025D080AF0018B885 /* Assets.xcassets */; };
 		FA4CEE8425D080AF0018B885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE8225D080AF0018B885 /* LaunchScreen.storyboard */; };
 		FA4CEE9425D082490018B885 /* cell-cultures.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA4CEE9325D082490018B885 /* cell-cultures.txt */; };
+		FA97FE4625D2456F0019A50E /* CultureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97FE4525D2456F0019A50E /* CultureCell.swift */; };
+		FAF8F5C025D3017F00210E30 /* TestingNeighboringCellsDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8F5BF25D3017F00210E30 /* TestingNeighboringCellsDetectionViewController.swift */; };
+		FAF8F5C525D3139000210E30 /* CellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8F5C425D3139000210E30 /* CellState.swift */; };
+		FAF8F5C925D313D000210E30 /* NeigborhoodByID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8F5C825D313D000210E30 /* NeigborhoodByID.swift */; };
+		FAF8F5CC25D3141700210E30 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8F5CB25D3141700210E30 /* Coordinates.swift */; };
+		FAF8F5D025D314CE00210E30 /* NeighborhoodCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF8F5CF25D314CE00210E30 /* NeighborhoodCoordinates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		FA4CEE8325D080AF0018B885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA4CEE8525D080AF0018B885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA4CEE9325D082490018B885 /* cell-cultures.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "cell-cultures.txt"; sourceTree = "<group>"; };
+		FA97FE4525D2456F0019A50E /* CultureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureCell.swift; sourceTree = "<group>"; };
+		FAF8F5BF25D3017F00210E30 /* TestingNeighboringCellsDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingNeighboringCellsDetectionViewController.swift; sourceTree = "<group>"; };
+		FAF8F5C425D3139000210E30 /* CellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellState.swift; sourceTree = "<group>"; };
+		FAF8F5C825D313D000210E30 /* NeigborhoodByID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeigborhoodByID.swift; sourceTree = "<group>"; };
+		FAF8F5CB25D3141700210E30 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		FAF8F5CF25D314CE00210E30 /* NeighborhoodCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodCoordinates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				FA4CEE8C25D080B90018B885 /* Storyboards */,
-				FA2D81A525D09911002AADD5 /* Views */,
 				FA4CEE9125D081410018B885 /* View Controllers */,
+				FA2D81A525D09911002AADD5 /* Views */,
+				FA97FE4825D245760019A50E /* Model */,
+				FAF8F5C325D3136C00210E30 /* Helpers */,
 				FA4CEE7625D080AD0018B885 /* Growing Cells in a Medium */,
 				FA4CEE7525D080AD0018B885 /* Products */,
 			);
@@ -93,8 +107,28 @@
 			isa = PBXGroup;
 			children = (
 				FA2D81A225D098C9002AADD5 /* GridViewController.swift */,
+				FAF8F5BF25D3017F00210E30 /* TestingNeighboringCellsDetectionViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA97FE4825D245760019A50E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA97FE4525D2456F0019A50E /* CultureCell.swift */,
+				FAF8F5CB25D3141700210E30 /* Coordinates.swift */,
+				FAF8F5C825D313D000210E30 /* NeigborhoodByID.swift */,
+				FAF8F5CF25D314CE00210E30 /* NeighborhoodCoordinates.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FAF8F5C325D3136C00210E30 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FAF8F5C425D3139000210E30 /* CellState.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,10 +202,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF8F5C925D313D000210E30 /* NeigborhoodByID.swift in Sources */,
+				FA97FE4625D2456F0019A50E /* CultureCell.swift in Sources */,
+				FAF8F5C525D3139000210E30 /* CellState.swift in Sources */,
 				FA2D81A325D098C9002AADD5 /* GridViewController.swift in Sources */,
 				FA4CEE7825D080AD0018B885 /* AppDelegate.swift in Sources */,
 				FA2D81A725D09925002AADD5 /* GridView.swift in Sources */,
+				FAF8F5CC25D3141700210E30 /* Coordinates.swift in Sources */,
+				FAF8F5C025D3017F00210E30 /* TestingNeighboringCellsDetectionViewController.swift in Sources */,
 				FA4CEE7A25D080AD0018B885 /* SceneDelegate.swift in Sources */,
+				FAF8F5D025D314CE00210E30 /* NeighborhoodCoordinates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

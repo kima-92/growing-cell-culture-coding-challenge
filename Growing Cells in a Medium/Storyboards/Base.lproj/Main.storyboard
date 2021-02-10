@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="srK-KE-JPw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7dn-mv-Vqg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -23,19 +23,10 @@
                                     <constraint firstAttribute="width" secondItem="HnN-5h-n6a" secondAttribute="height" multiplier="1:1" id="7cg-ai-1x1"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-uM-U2G">
-                                <rect key="frame" x="164" y="635" width="86" height="30"/>
-                                <state key="normal" title="Change Grid"/>
-                                <connections>
-                                    <action selector="changeGridButtonTapped:" destination="srK-KE-JPw" eventType="touchUpInside" id="BGz-G6-04g"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cK8-fS-J0l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="NzV-uM-U2G" firstAttribute="centerX" secondItem="kaQ-6q-qsD" secondAttribute="centerX" id="A9l-uT-qpx"/>
-                            <constraint firstItem="NzV-uM-U2G" firstAttribute="top" secondItem="HnN-5h-n6a" secondAttribute="bottom" constant="120" id="E3z-6X-2YD"/>
                             <constraint firstItem="HnN-5h-n6a" firstAttribute="leading" secondItem="kaQ-6q-qsD" secondAttribute="leadingMargin" id="LD3-wK-7hZ"/>
                             <constraint firstItem="HnN-5h-n6a" firstAttribute="centerX" secondItem="kaQ-6q-qsD" secondAttribute="centerX" id="eJt-Ck-RlL"/>
                             <constraint firstItem="HnN-5h-n6a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cK8-fS-J0l" secondAttribute="top" constant="20" id="g6r-3Y-9wf"/>
@@ -50,6 +41,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pu-SE-3XD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1135" y="96"/>
+        </scene>
+        <!--Testing Neighboring Cells Detection View Controller-->
+        <scene sceneID="PgQ-LW-f54">
+            <objects>
+                <viewController id="7dn-mv-Vqg" customClass="TestingNeighboringCellsDetectionViewController" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="buY-Rg-XnL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-bB-yW4" customClass="GridView" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target">
+                                <rect key="frame" x="20" y="141" width="374" height="374"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ap4-bB-yW4" secondAttribute="height" multiplier="1:1" id="1RO-Iv-lpc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="70i-If-5Y3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ap4-bB-yW4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="70i-If-5Y3" secondAttribute="leading" constant="20" id="4fV-Nh-IGl"/>
+                            <constraint firstItem="ap4-bB-yW4" firstAttribute="centerX" secondItem="buY-Rg-XnL" secondAttribute="centerX" id="A4f-3V-Jjd"/>
+                            <constraint firstItem="ap4-bB-yW4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="70i-If-5Y3" secondAttribute="top" constant="20" id="RhG-Yr-LxZ"/>
+                            <constraint firstItem="ap4-bB-yW4" firstAttribute="centerY" secondItem="buY-Rg-XnL" secondAttribute="centerY" constant="-120" id="Zsi-mW-9SO"/>
+                            <constraint firstItem="ap4-bB-yW4" firstAttribute="leading" secondItem="buY-Rg-XnL" secondAttribute="leadingMargin" id="w8d-CZ-OZy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gridView" destination="ap4-bB-yW4" id="uYB-G3-8Uz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wp3-Iv-ZP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2161" y="96"/>
         </scene>
     </scenes>
     <resources>
