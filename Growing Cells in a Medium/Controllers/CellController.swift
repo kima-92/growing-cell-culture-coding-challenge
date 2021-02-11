@@ -98,7 +98,7 @@ class CellController {
     
     func getNextStateFor(cell: CultureCell) -> CellState? {
         
-        guard let cells = cells else { return nil }
+        guard cells != nil else { return nil }
         
         if cell.state != .unlivable {
             var neighborhood: [CultureCell] = []
@@ -117,7 +117,6 @@ class CellController {
                     neighborhood.append(self.cells![id])
                 }
             }
-            
             // Store the cultured cells
             _ = neighborhood.filter({$0.state == .livable})
             let culturedCells = neighborhood.filter({$0.state == .cultured})
@@ -143,30 +142,6 @@ class CellController {
         return cell.state
     }
     
-//    // Check if livable cell culture can grow
-//    func willGrow(cell: CultureCell, rowIndex: Int, neighbors: [Character?]) -> String {
-//        
-//        var neighbirhood = getNeighborhoodFor(cell: cell)
-//        
-//        if cell.state == .livable {
-//            
-//            for neighbor in neighbors {
-//                if neighbor != nil && neighbor == "#" {
-//                    newGrid?[rowIndex].append("L")
-//                    livableCellCount += 1
-//                    return "L"
-//                }
-//            }
-//            
-//            // If there's no grown cultures in neigborhood, this culture will grow (live)
-//            newGrid?[rowIndex].append("#")
-//            didChange = true
-//            culturedCellCount += 1
-//            return "#"
-//        }
-//        return ""
-//    }
-    
     // Extracting grid data from .txt file
     func fetchData() -> [String]? {
         
@@ -175,7 +150,11 @@ class CellController {
             
             // Try extracting data or return nil
             if let dataString = try? String(contentsOfFile: filePath) {
-                stringArray = dataString.components(separatedBy: "\n")
+                let completeStringArray = dataString.components(separatedBy: "\n")
+                
+                // Spliting the complete array in half
+                let splitArray = completeStringArray.split()
+                stringArray = splitArray.left
                 return stringArray
             }
         }

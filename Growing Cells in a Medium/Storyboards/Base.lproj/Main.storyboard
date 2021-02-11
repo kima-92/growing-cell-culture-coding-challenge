@@ -53,40 +53,6 @@
             </objects>
             <point key="canvasLocation" x="1135" y="96"/>
         </scene>
-        <!--Testing Neighboring Cells Detection View Controller-->
-        <scene sceneID="PgQ-LW-f54">
-            <objects>
-                <viewController id="7dn-mv-Vqg" customClass="TestingNeighboringCellsDetectionViewController" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="buY-Rg-XnL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-bB-yW4" customClass="GridView" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target">
-                                <rect key="frame" x="20" y="141" width="374" height="374"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ap4-bB-yW4" secondAttribute="height" multiplier="1:1" id="1RO-Iv-lpc"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="70i-If-5Y3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ap4-bB-yW4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="70i-If-5Y3" secondAttribute="leading" constant="20" id="4fV-Nh-IGl"/>
-                            <constraint firstItem="ap4-bB-yW4" firstAttribute="centerX" secondItem="buY-Rg-XnL" secondAttribute="centerX" id="A4f-3V-Jjd"/>
-                            <constraint firstItem="ap4-bB-yW4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="70i-If-5Y3" secondAttribute="top" constant="20" id="RhG-Yr-LxZ"/>
-                            <constraint firstItem="ap4-bB-yW4" firstAttribute="centerY" secondItem="buY-Rg-XnL" secondAttribute="centerY" constant="-120" id="Zsi-mW-9SO"/>
-                            <constraint firstItem="ap4-bB-yW4" firstAttribute="leading" secondItem="buY-Rg-XnL" secondAttribute="leadingMargin" id="w8d-CZ-OZy"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="gridView" destination="ap4-bB-yW4" id="uYB-G3-8Uz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wp3-Iv-ZP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2161" y="96"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
