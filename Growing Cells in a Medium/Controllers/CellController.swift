@@ -25,7 +25,7 @@ class CellController {
     func createCell(character: String.Element, characterIndex: Int, x: CGFloat, y: CGFloat, state: CellState, cgRect: CGRect) {
         if cells == nil { cells = [] }
         
-        var cell = CultureCell(id: id, character: character, color: nil, indexID: characterIndex, coordinates: Coordinates(x: x, y: y), state: state, rect: cgRect)
+        let cell = CultureCell(id: id, indexID: characterIndex, character: character, color: nil, coordinates: Coordinates(x: x, y: y), state: state, rect: cgRect)
         cells?.append(cell)
         
         id += 1
@@ -95,6 +95,77 @@ class CellController {
         }
         return newNeighborhood
     }
+    
+    func getNextStateFor(cell: CultureCell) -> CellState? {
+        
+        guard let cells = cells else { return nil }
+        
+        if cell.state != .unlivable {
+            var neighborhood: [CultureCell] = []
+            
+            
+            // Id's of all the neighboring cells (as an neigborhoodById Object)
+            guard let neighborhoodByID = getNeighborhoodFor(cell: cell) else { return nil}
+            
+            // Array of ID's, of all the neighboring cells
+            let ids = neighborhoodByID.cells
+            
+            // Fetch each none nil cell of this cell's neighborhood
+            // And add it to the neighborhood array
+            for id in ids {
+                if let id = id {
+                    neighborhood.append(self.cells![id])
+                }
+            }
+            
+            // Store the cultured cells
+            _ = neighborhood.filter({$0.state == .livable})
+            let culturedCells = neighborhood.filter({$0.state == .cultured})
+            
+            // Apply the Game of Life Rules to decide what's this cell's next state
+            if cell.state == .livable && culturedCells.count <= 0 {
+                self.cells?[cell.indexID].state = .cultured
+                return .cultured
+                
+            } else if cell.state == .livable && culturedCells.count > 0 {
+                self.cells?[cell.indexID].state = .livable
+                return .livable
+            }
+            else if cell.state == .cultured && culturedCells.count >= 4 {
+                self.cells?[cell.indexID].state = .livable
+                return .livable
+                
+            } else if cell.state == .cultured && culturedCells.count < 4 {
+                self.cells?[cell.indexID].state = .cultured
+                return .cultured
+            }
+        }
+        return cell.state
+    }
+    
+//    // Check if livable cell culture can grow
+//    func willGrow(cell: CultureCell, rowIndex: Int, neighbors: [Character?]) -> String {
+//        
+//        var neighbirhood = getNeighborhoodFor(cell: cell)
+//        
+//        if cell.state == .livable {
+//            
+//            for neighbor in neighbors {
+//                if neighbor != nil && neighbor == "#" {
+//                    newGrid?[rowIndex].append("L")
+//                    livableCellCount += 1
+//                    return "L"
+//                }
+//            }
+//            
+//            // If there's no grown cultures in neigborhood, this culture will grow (live)
+//            newGrid?[rowIndex].append("#")
+//            didChange = true
+//            culturedCellCount += 1
+//            return "#"
+//        }
+//        return ""
+//    }
     
     // Extracting grid data from .txt file
     func fetchData() -> [String]? {

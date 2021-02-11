@@ -31,6 +31,12 @@ class GridViewController: UIViewController {
 //        fireTimer() // TODO: - Put this back!
     }
     
+    // MARK: - Actions
+    
+    @IBAction func redrawButtonTapped(_ sender: UIButton) {
+        gridView.setNeedsDisplay()
+    }
+    
     // MARK: - Methods
     
     // Timer

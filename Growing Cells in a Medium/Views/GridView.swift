@@ -14,7 +14,6 @@ class GridView: UIView {
     var cellController: CellController?
     var cellSize: CGFloat?
     
-    var cells: [CultureCell]?
     var cell: CultureCell?
     
     // MARK: - Draw Method
@@ -24,6 +23,8 @@ class GridView: UIView {
         
         if cellController.cells == nil {
             firstTimeDraw()
+        } else {
+            redrawGrid()
         }
     }
     
@@ -79,6 +80,42 @@ class GridView: UIView {
                 x = 0
                 y += cellSize
             }
+        }
+    }
+    
+    private func redrawGrid() {
+        
+        guard let cellController = cellController,
+              let cells = cellController.cells,
+              let cellSize = cellSize else { return }
+        
+        var x: CGFloat = 0
+        var y: CGFloat = 0
+        
+        if let context = UIGraphicsGetCurrentContext() {
+            
+            // Fetching the next state for this cell and drawing accordingly
+            for cell in cells {
+                
+                guard let square = cell.rect else { return }
+                let nextstate = cellController.getNextStateFor(cell: cell)
+                
+                // Color square based on initial state
+                if nextstate == .livable {
+                    context.setFillColor(UIColor.green.cgColor)
+                    context.fill(square)
+                } else if nextstate == .unlivable{
+                    context.setFillColor(UIColor.red.cgColor)
+                    context.fill(square)
+                } else  if nextstate == .cultured {
+                    context.setFillColor(UIColor.systemPink.cgColor)
+                    context.fill(square)
+                }
+                x += cellSize
+            }
+            // Restart x for the next row
+            x = 0
+            y += cellSize
         }
     }
 }
