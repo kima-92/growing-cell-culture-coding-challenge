@@ -11,6 +11,8 @@ class GridViewController: UIViewController {
     
     // MARK: - Properties
     
+    var cellController = CellController()
+    
     var rows: [String]?
     var cellSize: CGFloat?
     
@@ -25,9 +27,8 @@ class GridViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         setUpGrid()
-        fireTimer()
+//        fireTimer() // TODO: - Put this back!
     }
     
     // MARK: - Methods
@@ -39,9 +40,9 @@ class GridViewController: UIViewController {
             
             if timerCount == 5 {
                 timer.invalidate()
-                gridView.isRed = true
                 gridView.setNeedsDisplay()
             } else {
+                gridView.setNeedsDisplay()
                 timerCount += 1
                 print("Count: \(timerCount)")
             }
@@ -56,30 +57,17 @@ class GridViewController: UIViewController {
         }
     }
     
-    // Extracting grid data
-    private func fetchData() {
-        
-        // Get file path to txt file
-        if let filePath = Bundle.main.path(forResource: "cell-cultures", ofType: "txt") {
-            
-            // Try extracting data
-            if let dataString = try? String(contentsOfFile: filePath) {
-                rows = dataString.components(separatedBy: "\n")
-            }
-        }
-    }
-    
     // Set up the Grid View
     private func setUpGrid(isRed: Bool = false) {
-        guard let rows = rows else { return }
+        guard let stringArray = cellController.fetchData() else { return }
         
         // Size of the Screen
         let viewWidth = view.frame.maxX - 20
         let viewHeight = view.frame.maxY / 2
         
         // Divide the screen size by the amount of rows and columns needed
-        let cellWidth = viewWidth / CGFloat(rows[0].count)
-        let cellHeight = viewHeight / CGFloat(rows.count)
+        let cellWidth = viewWidth / CGFloat(stringArray[0].count)
+        let cellHeight = viewHeight / CGFloat(stringArray.count)
         
         // Set the cellSize
         if cellWidth <= cellHeight {
@@ -89,6 +77,8 @@ class GridViewController: UIViewController {
         }
         
         guard let cellSize = cellSize else { return }
-        gridView.setGridSize(elements: rows, cellSize: cellSize, isRed: isRed)
+        cellController.cellSize = cellSize
+        gridView.cellController = cellController
+        gridView.cellSize = cellSize
     }
 }

@@ -11,68 +11,74 @@ class GridView: UIView {
     
     // MARK: - Properties
     
-    var elements: [String]?
-    var columnsCount: Int?
-    var rowsCount: Int?
+    var cellController: CellController?
     var cellSize: CGFloat?
     
-    var isRed: Bool = false
+    var cells: [CultureCell]?
+    var cell: CultureCell?
+    
+    // MARK: - Draw Method
+    
+    override func draw(_ rect: CGRect) {
+        guard let cellController = cellController else { return }
+        
+        if cellController.cells == nil {
+            firstTimeDraw()
+        }
+    }
     
     // MARK: - Methods
     
-    override func draw(_ rect: CGRect) {
-        guard let elements = elements,
-              let _ = rowsCount,
-              let _ = columnsCount,
-              let cellSize = cellSize else { return }
+    private func firstTimeDraw() {
+        guard let cellController = cellController,
+              let cellSize = cellSize,
+              let stringArray = cellController.stringArray  else { return }
         
         var x: CGFloat = 0
         var y: CGFloat = 0
         
         if let context = UIGraphicsGetCurrentContext() {
+            var characterIndex = 0
             
-            // Drawing a CGRect for each cell
-            for element in elements {
-                for character in element {
+            // Drawing a CGRect and creating a cell for each character
+            for string in stringArray {
+                for character in string {
                     
                     let square = CGRect(x: x, y: y, width: cellSize, height: cellSize)
                     
-                    // Color square based on state
-                    
-                    
-                    if isRed {
-                        context.setFillColor(UIColor.red.cgColor)
-                        context.fill(square)
+                    var state: CellState = .livable
+                    switch character {
+                    case "L":
+                        state = .livable
+                    case "#":
+                        state = .cultured
+                    case ".":
+                        state = .unlivable
+                    default:
+                        state = .unlivable
                     }
-                    else if character == "L" {
+                    
+                    cellController.createCell(character: character, characterIndex: characterIndex, x: x, y: y, state: state, cgRect: square)
+                    
+                    // Color square based on initial state
+                    if character == "L" {
                         context.setFillColor(UIColor.green.cgColor)
                         context.fill(square)
                     } else if character == "." {
                         context.setFillColor(UIColor.red.cgColor)
                         context.fill(square)
+                    } else if character == "#" {
+                        context.setFillColor(UIColor.systemPink.cgColor)
+                        context.fill(square)
                     }
                     
                     x += cellSize
+                    characterIndex += 1
                 }
                 // Restart x for the next row
                 x = 0
                 y += cellSize
             }
         }
-    }
-    
-    // MARK: - Methods
-    
-    // Collect the data to size the grid
-    func setGridSize(elements: [String], cellSize: CGFloat, isRed: Bool = false) {
-        self.elements = elements
-        self.rowsCount = elements.count
-        self.columnsCount = elements[0].count
-        self.cellSize = cellSize
-        
-        
-        self.isRed = isRed
-        
-        // TODO: - Don't assume each row has the same count
     }
 }

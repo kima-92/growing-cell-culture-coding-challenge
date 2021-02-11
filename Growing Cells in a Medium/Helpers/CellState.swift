@@ -8,6 +8,7 @@
 import Foundation
 
 enum CellState {
-    case live
-    case dead
+    case livable
+    case cultured
+    case unlivable
 }
