@@ -15,13 +15,14 @@ class CellController {
     var didChanged = true
     var itirationCount = 0
     var culturedCount = 0
+    var livableSpacesCount = 0
     
     // MARK: - Methods
     
     // Setting the next generation of the Grid
     func growCells() {
         didChanged = false
-        culturedCount = 0
+        self.culturedCount = 0
         var stateGrid: [[CellState]] = []
         
         // Saving the next state of each cell
@@ -57,10 +58,12 @@ class CellController {
         // Map through each string, then through each character
         // to create a 2D array of CultureCells
         cellGrid = stringArray.map { (string) in
-            let cell = string.map { (character) in
-                CultureCell(character: character)
+            let cellRow = string.map { (character) -> CultureCell in
+                let cell = CultureCell(character: character)
+                if cell.state != .unlivable { livableSpacesCount += 1 }
+                return cell
             }
-            return cell
+            return cellRow
         }
         
         if !cellGrid.isEmpty {
