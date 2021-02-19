@@ -9,29 +9,36 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var cellController = CellController()
+    
     // MARK: - Outlets
+    
     @IBOutlet weak var hoursCountLabel: UILabel!
     @IBOutlet weak var occupiedCountLabel: UILabel!
     @IBOutlet weak var percentageLabel: UILabel!
     
+    // MARK: - DidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        cellController.createCells()
     }
     
     // MARK: - Actions
+    
     @IBAction func startDistributingCulturesButtonTapped(_ sender: UIButton) {
+        startItirating()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Methods
+    
+    private func startItirating() {
+        while cellController.didChanged {
+            cellController.growCells()
+        }
+        
+        hoursCountLabel.text = String(cellController.itirationCount)
     }
-    */
-
 }

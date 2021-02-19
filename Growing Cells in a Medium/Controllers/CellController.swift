@@ -12,9 +12,37 @@ class CellController {
     // MARK: - Properties
     
     var cellGrid: [[CultureCell]] = []
-    var cellSize: CGFloat?
+    var didChanged = true
+    var itirationCount = 0
     
     // MARK: - Methods
+    
+    // Setting the next generation of the Grid
+    func growCells() {
+        didChanged = false
+        var stateGrid: [[CellState]] = []
+        
+        // Saving the next state of each cell
+        for (rowIndex, _) in cellGrid.enumerated() {
+            stateGrid.append([])
+            
+            for cell in cellGrid[rowIndex] {
+                stateGrid[rowIndex].append(cell.stateForNextGeneration())
+            }
+        }
+        
+        // Changing the state of each cell
+        for (rowIndex, _) in cellGrid.enumerated() {
+            for (cellIndex, cell) in cellGrid[rowIndex].enumerated() {
+                
+                if cell.state != stateGrid[rowIndex][cellIndex] {
+                    cell.state = stateGrid[rowIndex][cellIndex]
+                    didChanged = true
+                }
+            }
+        }
+        if didChanged == true { itirationCount += 1 }
+    }
     
     // Creating the CultureCell 2D array
     func createCells() -> [[CultureCell]]? {
