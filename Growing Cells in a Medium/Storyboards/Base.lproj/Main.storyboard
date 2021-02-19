@@ -102,51 +102,6 @@
             </objects>
             <point key="canvasLocation" x="82" y="91"/>
         </scene>
-        <!--Grid View Controller-->
-        <scene sceneID="SYY-Yd-WzA">
-            <objects>
-                <viewController id="srK-KE-JPw" customClass="GridViewController" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kaQ-6q-qsD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HnN-5h-n6a" customClass="GridView" customModule="Growing_Cells_in_a_Medium" customModuleProvider="target">
-                                <rect key="frame" x="20" y="141" width="374" height="374"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="HnN-5h-n6a" secondAttribute="height" multiplier="1:1" id="7cg-ai-1x1"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPA-IY-Tc4">
-                                <rect key="frame" x="30" y="565" width="354" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Re-Draw"/>
-                                <connections>
-                                    <action selector="redrawButtonTapped:" destination="srK-KE-JPw" eventType="touchUpInside" id="mSA-Ok-MAH"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="cK8-fS-J0l"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="UPA-IY-Tc4" firstAttribute="top" secondItem="HnN-5h-n6a" secondAttribute="bottom" constant="50" id="8Da-OX-wpv"/>
-                            <constraint firstItem="HnN-5h-n6a" firstAttribute="leading" secondItem="kaQ-6q-qsD" secondAttribute="leadingMargin" id="LD3-wK-7hZ"/>
-                            <constraint firstItem="HnN-5h-n6a" firstAttribute="centerX" secondItem="kaQ-6q-qsD" secondAttribute="centerX" id="eJt-Ck-RlL"/>
-                            <constraint firstItem="HnN-5h-n6a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cK8-fS-J0l" secondAttribute="top" constant="20" id="g6r-3Y-9wf"/>
-                            <constraint firstItem="HnN-5h-n6a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cK8-fS-J0l" secondAttribute="leading" constant="20" id="gWR-XY-QGi"/>
-                            <constraint firstItem="HnN-5h-n6a" firstAttribute="centerY" secondItem="kaQ-6q-qsD" secondAttribute="centerY" constant="-120" id="qDd-XC-QtF"/>
-                            <constraint firstItem="cK8-fS-J0l" firstAttribute="trailing" secondItem="UPA-IY-Tc4" secondAttribute="trailing" constant="30" id="tT8-jP-jE1"/>
-                            <constraint firstItem="UPA-IY-Tc4" firstAttribute="leading" secondItem="cK8-fS-J0l" secondAttribute="leading" constant="30" id="wCA-LC-W9u"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="gridView" destination="HnN-5h-n6a" id="DCy-7g-Kuu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5pu-SE-3XD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1135" y="96"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

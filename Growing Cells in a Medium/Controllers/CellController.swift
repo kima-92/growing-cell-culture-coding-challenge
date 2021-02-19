@@ -52,8 +52,8 @@ class CellController {
     }
     
     // Creating the CultureCell 2D array
-    func createCells() -> [[CultureCell]]? {
-        guard let stringArray = fetchData() else { return nil }
+    func createCells() {
+        guard let stringArray = fetchData() else { return }
         
         // Map through each string, then through each character
         // to create a 2D array of CultureCells
@@ -69,7 +69,6 @@ class CellController {
         if !cellGrid.isEmpty {
             setupNeighbors()
         }
-        return cellGrid
     }
     
     // Set the neighboring cells for each cell
