@@ -40,5 +40,6 @@ class MainViewController: UIViewController {
         }
         
         hoursCountLabel.text = String(cellController.itirationCount)
+        occupiedCountLabel.text = String(cellController.culturedCount)
     }
 }

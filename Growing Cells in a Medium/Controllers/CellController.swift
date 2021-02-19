@@ -14,12 +14,14 @@ class CellController {
     var cellGrid: [[CultureCell]] = []
     var didChanged = true
     var itirationCount = 0
+    var culturedCount = 0
     
     // MARK: - Methods
     
     // Setting the next generation of the Grid
     func growCells() {
         didChanged = false
+        culturedCount = 0
         var stateGrid: [[CellState]] = []
         
         // Saving the next state of each cell
@@ -34,11 +36,15 @@ class CellController {
         // Changing the state of each cell
         for (rowIndex, _) in cellGrid.enumerated() {
             for (cellIndex, cell) in cellGrid[rowIndex].enumerated() {
+                var culturedCount = 0
+                if cell.state == .cultured { culturedCount = 1 }
                 
                 if cell.state != stateGrid[rowIndex][cellIndex] {
                     cell.state = stateGrid[rowIndex][cellIndex]
+                    if cell.state == .cultured { culturedCount = 1 }
                     didChanged = true
                 }
+                self.culturedCount += culturedCount
             }
         }
         if didChanged == true { itirationCount += 1 }
