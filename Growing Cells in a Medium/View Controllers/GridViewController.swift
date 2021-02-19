@@ -28,6 +28,7 @@ class GridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpGrid()
+        cellController.createCells()
 //        fireTimer() // TODO: - Put this back!
     }
     
@@ -65,26 +66,26 @@ class GridViewController: UIViewController {
     
     // Set up the Grid View
     private func setUpGrid(isRed: Bool = false) {
-        guard let stringArray = cellController.fetchData() else { return }
-        
-        // Size of the Screen
-        let viewWidth = view.frame.maxX - 20
-        let viewHeight = view.frame.maxY / 2
-        
-        // Divide the screen size by the amount of rows and columns needed
-        let cellWidth = viewWidth / CGFloat(stringArray[0].count)
-        let cellHeight = viewHeight / CGFloat(stringArray.count)
-        
-        // Set the cellSize
-        if cellWidth <= cellHeight {
-            cellSize = cellWidth
-        } else {
-            cellSize = cellHeight
-        }
-        
-        guard let cellSize = cellSize else { return }
-        cellController.cellSize = cellSize
-        gridView.cellController = cellController
-        gridView.cellSize = cellSize
+//        guard let stringArray = cellController.fetchData() else { return }
+//        
+//        // Size of the Screen
+//        let viewWidth = view.frame.maxX - 20
+//        let viewHeight = view.frame.maxY / 2
+//        
+//        // Divide the screen size by the amount of rows and columns needed
+//        let cellWidth = viewWidth / CGFloat(stringArray[0].count)
+//        let cellHeight = viewHeight / CGFloat(stringArray.count)
+//        
+//        // Set the cellSize
+//        if cellWidth <= cellHeight {
+//            cellSize = cellWidth
+//        } else {
+//            cellSize = cellHeight
+//        }
+//        
+//        guard let cellSize = cellSize else { return }
+//        cellController.cellSize = cellSize
+//        gridView.cellController = cellController
+//        gridView.cellSize = cellSize
     }
 }

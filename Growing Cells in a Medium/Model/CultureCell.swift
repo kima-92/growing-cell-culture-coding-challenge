@@ -7,15 +7,41 @@
 
 import UIKit
 
-struct CultureCell {
-    var id: Int
-    var indexID: Int
-    var character: String.Element
+class CultureCell {
     
-    var color: CGColor?
+    // MARK: - Properties
     
-    var coordinates: Coordinates
+    var neighbors: [CultureCell] = []
     var state: CellState
-//    var neighborhoodByID: NeighborhoodCoordinates?
-    var rect: CGRect?
+    
+    // MARK: - Initializer
+    
+    init(character: Character) {
+        self.state = CellState(rawValue: character) ?? .unlivable
+    }
+    
+    // MARK: - Next generation method
+    
+    func stateForNextGeneration() -> CellState {
+        
+        switch state {
+        case .cultured:
+            if !neighbors.isEmpty,
+               neighbors.filter({$0.state == .cultured}).count >= 4 {
+                return .livable
+            } else {
+                return .cultured
+            }
+        case .livable:
+            if !neighbors.isEmpty,
+               neighbors.filter({$0.state == .cultured}).count == 0 {
+                return .cultured
+            } else {
+                return .livable
+            }
+        case .unlivable:
+            return .unlivable
+        }
+    }
 }
+
