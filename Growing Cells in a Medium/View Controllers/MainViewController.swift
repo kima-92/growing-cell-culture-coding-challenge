@@ -18,11 +18,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var hoursCountLabel: UILabel!
     @IBOutlet weak var occupiedCountLabel: UILabel!
     @IBOutlet weak var percentageLabel: UILabel!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     // MARK: - DidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicatorView.hidesWhenStopped = true
         cellController.createCells()
     }
     
@@ -36,22 +38,32 @@ class MainViewController: UIViewController {
     
     // Grow cells till the Grid stabilizes
     private func startItirating() {
-        while cellController.didChanged {
-            cellController.growCells()
+        activityIndicatorView.startAnimating()
+        
+        // Running the growth of the cells on the background queue
+        DispatchQueue.global(qos: .background).async {
+            while self.cellController.didChanged {
+                self.cellController.growCells()
+            }
+            
+            // Updating the UI in the main queue, after the previous code in outer block
+            DispatchQueue.main.async {
+                let livCount = Float(self.cellController.livableSpacesCount)
+                let cultCount = Float(self.cellController.culturedCount)
+                let percentage = livCount / cultCount
+                
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .percent
+                formatter.maximumIntegerDigits = 2
+                formatter.locale = Locale(identifier: "en_US")
+                
+                // Views
+                self.hoursCountLabel.text = String(self.cellController.itirationCount)
+                self.occupiedCountLabel.text = String(self.cellController.culturedCount)
+                self.percentageLabel.text = formatter.string(from: NSNumber(value: percentage))
+                
+                self.activityIndicatorView.stopAnimating()
+            }
         }
-        
-        let livCount = Float(cellController.livableSpacesCount)
-        let cultCount = Float(cellController.culturedCount)
-        let percentage = livCount / cultCount
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.maximumIntegerDigits = 2
-        formatter.locale = Locale(identifier: "en_US")
-        
-        // Updating Views
-        hoursCountLabel.text = String(cellController.itirationCount)
-        occupiedCountLabel.text = String(cellController.culturedCount)
-        percentageLabel.text = formatter.string(from: NSNumber(value: percentage))
     }
 }
