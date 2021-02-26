@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum CellState {
-    case livable
-    case cultured
-    case unlivable
+enum CellState: Character {
+    case livable = "L"
+    case cultured = "#"
+    case unlivable = "."
 }
